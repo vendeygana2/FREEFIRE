@@ -34,6 +34,19 @@
             text-align: center;
             position: relative;
         }
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: transparent;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: #ed7318;
+        }
+        .close-btn:hover {
+            color: #d66616;
+        }
         .venta p {
             margin: 15px 0;
             color: black;
@@ -82,6 +95,7 @@
 <body onload="openModal()">
     <div class="overlay" id="overlay">
         <div class="venta">
+            <button class="close-btn" onclick="window.location.href='https://www.vendeygana.net/user/'">&times;</button>
             <img class="imagen" src="https://i.pinimg.com/736x/33/9a/c2/339ac2b93b9f7cd4d8f004cc9438da3d.jpg" alt="Free Fire">
             <img class="gif" src="https://media2.giphy.com/media/20XFN3vWiU79fBQgBc/giphy.gif?cid=6c09b952aqp164lcfr8a8isjui3njzaqjope3urusfl3h0xp&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="GIF">
             <div class="header-title">COMPRA Y VENDE AL MEJOR PRECIO LOS DIAMANTES DE FREE FIRE EL JUEGO MÁS DESCARGADO EN LA PLAY STORE</div>
