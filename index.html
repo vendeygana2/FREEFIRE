@@ -127,6 +127,28 @@
             width: 60px;
             height: auto;
         }
+        .whatsapp-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            color: black;
+            font-size: 16px;
+            animation: blink 2s infinite;
+        }
+        .whatsapp-info img {
+            width: 32px;
+            height: auto;
+            margin-right: 10px;
+        }
+        @keyframes blink {
+            0%, 50%, 100% {
+                opacity: 1;
+            }
+            25%, 75% {
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body onload="openModal()">
@@ -137,12 +159,16 @@
             <img class="gif" src="https://media2.giphy.com/media/20XFN3vWiU79fBQgBc/giphy.gif?cid=6c09b952aqp164lcfr8a8isjui3njzaqjope3urusfl3h0xp&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=g" alt="GIF">
             <div class="header-title">COMPRA Y VENDE AL MEJOR PRECIO LOS DIAMANTES DE FREE FIRE EL JUEGO MÁS DESCARGADO EN LA PLAY STORE</div>
             <div class="botones">
-                <button class="boton boton-comprar" onclick="window.location.href='https://dptodecomprasvg.company.site/products/PINES-FREE-FIRE-p721785350'">Comprar Pines</button>
+                <button class="boton boton-comprar" onclick="window.location.href='https://fluidforms.co/embed/form?id=679baa193eed3cad71fa2071'">Comprar Pines</button>
                 <button class="boton" onclick="window.location.href='https://www.vendeygana.net/user/'">Regresar a Vende y Gana</button>
             </div>
             <div class="likes">
                 <span class="like-count" id="likes">96 ❤️</span>
                 <button class="like-btn" onclick="addLike()">DALE LIKE</button>
+            </div>
+            <div class="whatsapp-info">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+                <span>EL PIN SERÁ ENVIADO VÍA WHATSAPP AL NÚMERO QUE COLOQUE EN LOS DATOS DE LA COMPRA</span>
             </div>
         </div>
     </div>
