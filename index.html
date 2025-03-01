@@ -29,8 +29,24 @@
         /* Logo en la parte superior */
         .logo {
             width: 100px; /* Ancho del logo */
-            height: auto; /* Altura automática */
-            margin-top: 10px; /* Espacio arriba del logo */
+            height: 50px; /* Altura del logo */
+            background-color: black; /* Fondo negro para cubrir el texto alternativo */
+            margin: 0; /* Sin margen */
+            padding: 0; /* Sin relleno */
+            position: absolute; /* Posicionamiento absoluto */
+            top: 0; /* Pegado al borde superior */
+            left: 50%; /* Centrado horizontalmente */
+            transform: translateX(-50%); /* Ajuste fino para centrar */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Imagen del logo */
+        .logo img {
+            width: 100%; /* Ajusta la imagen al tamaño del contenedor */
+            height: 100%; /* Ajusta la imagen al tamaño del contenedor */
+            object-fit: contain; /* Mantiene la proporción de la imagen */
         }
 
         /* Iframe para el formulario */
@@ -53,7 +69,9 @@
 <body>
     <div class="container">
         <!-- Logo -->
-        <img src="https://via.placeholder.com/100x50" alt="Logo" class="logo">
+        <div class="logo">
+            <img src="https://via.placeholder.com/100x50" alt="">
+        </div>
         <!-- Formulario -->
         <iframe src="https://form.jotform.com/250583984371062"></iframe>
     </div>
