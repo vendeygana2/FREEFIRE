@@ -15,19 +15,35 @@
             width: 100%;
             height: 100%;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             box-sizing: border-box;
         }
+        header {
+            width: 100%;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+        }
+        header img {
+            max-width: 100%;
+            height: auto;
+        }
         iframe {
             width: 100%;
-            height: 100%;
+            height: calc(100% - 80px); /* Resta el espacio del header */
             border: none;
         }
     </style>
 </head>
 <body>
     <div class="form-container">
+        <header>
+            <img src="https://dhgf5mcbrms62.cloudfront.net/110979006/slider-XQr3yK/OEdBOSL-2000x2000.webp" alt="Logo">
+        </header>
         <iframe src="https://form.jotform.com/250583984371062"></iframe>
     </div>
 </body>
