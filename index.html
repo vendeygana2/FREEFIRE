@@ -3,88 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario en Pantalla Completa</title>
+    <title>Formulario Responsivo</title>
     <style>
-        /* Reset básico */
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden; /* Evita el scroll */
-            box-sizing: border-box; /* Evita problemas de dimensiones */
+        .form-container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
         }
-
-        /* Contenedor principal */
-        .container {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column; /* Coloca el logo arriba y el formulario abajo */
-            justify-content: flex-start; /* Alinea el contenido en la parte superior */
-            align-items: center;
-            background-color: #f0f0f0;
-            padding-top: 50px; /* Añade espacio en la parte superior */
-            transform: scale(1); /* Ajusta la escala a 1 para mantener proporción */
-        }
-
-        /* Contenedor del logo con fondo negro */
-        .logo-container {
-            width: 100%; /* Ocupa todo el ancho */
-            background-color: black; /* Fondo negro */
-            display: flex;
-            justify-content: center; /* Centra el logo horizontalmente */
-            align-items: center; /* Centra el logo verticalmente */
-            padding: 10px 0; /* Espacio interno arriba y abajo */
-            margin-top: 20px; /* Separación del margen superior */
-        }
-
-        /* Logo */
-        .logo {
-            width: 172.5px; /* Ancho del logo aumentado en un 15% */
-            height: auto; /* Altura automática para mantener la proporción */
-        }
-
-        /* Imagen del logo */
-        .logo img {
-            width: 100%; /* Ajusta la imagen al tamaño del contenedor */
-            height: auto; /* Mantiene la proporción de la imagen */
-            display: block; /* Elimina espacios no deseados */
-        }
-
-        /* Iframe para el formulario */
         iframe {
             width: 100%;
-            height: 100%;
-            border: none; /* Sin bordes */
-            flex-grow: 1; /* Ocupa el espacio restante */
-        }
-
-        /* Aumentar tamaño en PC */
-        @media (min-width: 768px) {
-            .container {
-                transform: scale(1.2); /* Aumenta el tamaño en un 20% */
-                transform-origin: center center; /* Escala desde el centro */
-            }
-            .logo {
-                width: 230px; /* Tamaño más grande en PC */
-            }
-            .logo-container {
-                margin-top: 30px; /* Mayor separación en PC */
-            }
+            height: 800px; /* Puedes ajustar esto según necesites */
+            border: none;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Contenedor del logo con fondo negro -->
-        <div class="logo-container">
-            <div class="logo">
-                <img src="https://dhgf5mcbrms62.cloudfront.net/110979006/slider-XQr3yK/OEdBOSL-2000x2000.webp" alt="Logo">
-            </div>
-        </div>
-        <!-- Formulario -->
+    <div class="form-container">
         <iframe src="https://form.jotform.com/250583984371062"></iframe>
     </div>
 </body>
 </html>
+
