@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pantalla de Juegos</title>
   <style>
+    /* Estilos generales */
     body {
       margin: 0;
       padding: 0;
@@ -24,11 +25,11 @@
     
     .button-container {
       display: grid;
-      grid-template-columns: repeat(4, 1fr); /* 4 columnas por fila */
-      gap: 15px; /* Espacio entre botones */
+      grid-template-columns: repeat(4, 1fr); /* 4 columnas por defecto */
+      gap: 15px;
       justify-items: center;
-      width: 90%; /* Ajuste para dispositivos móviles */
-      max-width: 800px; /* Tamaño máximo para pantallas grandes */
+      width: 90%;
+      max-width: 800px;
     }
     
     .button {
@@ -53,6 +54,39 @@
     .button:hover {
       transform: scale(1.1);
       box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Media Queries para mejorar la visualización en móviles */
+    @media (max-width: 600px) {
+      .button-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas para pantallas pequeñas */
+      }
+      
+      .button {
+        width: 120px;
+        height: 120px;
+      }
+      
+      h1 {
+        font-size: 20px;
+        margin: 15px;
+      }
+    }
+    
+    @media (max-width: 400px) {
+      .button-container {
+        grid-template-columns: 1fr; /* 1 columna para dispositivos muy pequeños */
+      }
+      
+      .button {
+        width: 100px;
+        height: 100px;
+      }
+      
+      h1 {
+        font-size: 18px;
+        margin: 10px;
+      }
     }
   </style>
 </head>
