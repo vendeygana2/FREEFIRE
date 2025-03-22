@@ -3,64 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario Pantalla Completa</title>
+    <title>Pantalla de Juegos</title>
     <style>
         body, html {
             margin: 0;
             padding: 0;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #f4f4f4;
-        }
-
-        .container {
-            width: 100vw;
-            height: 100vh;
-            position: relative;
-            background: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        iframe {
             width: 100%;
             height: 100%;
-            border: none;
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
+        /* Estilos para la ventana emergente */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
+            text-align: center;
+            z-index: 1000;
+            width: 90%; /* Ajuste responsivo: ocupa 90% del ancho de la pantalla */
+            max-width: 400px; /* Para pantallas grandes, límite de ancho */
+        }
+
+        .popup h2 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        /* Estilos para los botones con efecto de ondas */
+        .popup button {
+            position: relative; /* Necesario para el pseudo-elemento */
+            background-color: #ED7318; /* Color de los botones */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%; /* Botones ocupan todo el ancho en móviles */
+            max-width: 200px; /* Límite de tamaño para pantallas grandes */
+            overflow: hidden; /* Para contener el efecto de ondas */
+        }
+
+        .popup button:hover {
+            background-color: #d46314; /* Color más oscuro al pasar el mouse */
+        }
+
+        /* Efecto de ondas al hacer clic */
+        .popup button::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background-color: rgba(255, 255, 255, 0.5); /* Color de las ondas */
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: width 0.5s ease, height 0.5s ease, opacity 0.5s ease;
+        }
+
+        .popup button:active::after {
+            width: 200px; /* Tamaño máximo de la onda */
+            height: 200px;
+            opacity: 1;
+            transition: width 0s ease, height 0s ease, opacity 0.5s ease;
+        }
+
+        /* Estilos para la "X" sin botón */
         .close-btn {
             position: absolute;
             top: 10px;
             right: 10px;
-            background: red;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            font-size: 18px;
+            color: #ED7318; /* Color naranja */
+            font-size: 24px; /* Tamaño de la "X" */
             font-weight: bold;
             cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            background: none; /* Sin fondo */
+            border: none; /* Sin borde */
+            padding: 0; /* Sin padding */
+            line-height: 1; /* Ajuste de alineación */
         }
 
         .close-btn:hover {
-            background: darkred;
+            color: #d46314; /* Color más oscuro al pasar el mouse */
+        }
+
+        iframe {
+            width: 100vw;
+            height: 100vh;
+            border: none;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <button class="close-btn" onclick="goBack()">X</button>
-        <iframe src="https://fluidforms.co/embed/form?id=679baa193eed3cad71fa2071" title="Formulario"></iframe>
+    <!-- Mensaje emergente -->
+    <div class="popup" id="popup">
+        <span class="close-btn" onclick="closePopup()">X</span>
+        <h2>DESCARGA NUESTRA APP Y DISFRUTA DE LOS MEJORES BENEFICIOS</h2>
+        <button onclick="window.location.href='https://app.jotform.com/VENDEYGANASTREAMING/vende-y-gana-panaxtreaming'">DESCARGAR APP</button>
+        <button onclick="window.location.href='https://www.youtube.com/watch?v=YaZccFewDjY'">VER VIDEO DESCARGA LA APP</button>
     </div>
-    
+
+    <!-- Formulario embebido (nuevo formulario) -->
+    <iframe src="https://form.jotform.com/250583984371062" title="Formulario"></iframe>
+
     <script>
-        function goBack() {
-            window.history.back();
+        function closePopup() {
+            const popup = document.getElementById('popup');
+            popup.style.display = 'none'; /* Oculta la ventana emergente */
         }
     </script>
 </body>
