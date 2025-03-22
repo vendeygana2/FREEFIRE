@@ -25,7 +25,7 @@
     
     .button-container {
       display: grid;
-      grid-template-columns: repeat(4, 1fr); /* 4 columnas por defecto */
+      grid-template-columns: repeat(4, 1fr); /* Por defecto, 4 columnas */
       gap: 15px;
       justify-items: center;
       width: 90%;
@@ -56,10 +56,10 @@
       box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
     }
     
-    /* Media Queries para mejorar la visualización en móviles */
+    /* Media query para dispositivos móviles */
     @media (max-width: 600px) {
       .button-container {
-        grid-template-columns: repeat(2, 1fr); /* 2 columnas para pantallas pequeñas */
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas en dispositivos móviles */
       }
       
       .button {
@@ -72,49 +72,40 @@
         margin: 15px;
       }
     }
-    
-    @media (max-width: 400px) {
-      .button-container {
-        grid-template-columns: 1fr; /* 1 columna para dispositivos muy pequeños */
-      }
-      
-      .button {
-        width: 100px;
-        height: 100px;
-      }
-      
-      h1 {
-        font-size: 18px;
-        margin: 10px;
-      }
-    }
   </style>
 </head>
 <body>
   <h1>ELIGE EL JUEGO QUE DESEAS RECARGAR</h1>
   <div class="button-container">
-    <!-- Botón de Free Fire redirige al enlace indicado -->
+    <!-- Botón de Free Fire -->
     <button class="button" onclick="window.location.href='https://vendeygana.forms.app/recargafreefire'">
       <img src="https://brandlogos.net/wp-content/uploads/2022/07/free_fire-logo_brandlogos.net_xvnua.png" alt="Free Fire">
     </button>
+    <!-- Botón de Call of Duty -->
     <button class="button" onclick="alert('Abrir Call of Duty')">
       <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Call_of_Duty_Mobile_Logo.png" alt="Call of Duty">
     </button>
+    <!-- Botón de Mobile Legends -->
     <button class="button" onclick="alert('Abrir Mobile Legends')">
       <img src="https://upload.wikimedia.org/wikipedia/en/thumb/6/61/Mobile-legends-logo.svg/2560px-Mobile-legends-logo.svg.png" alt="Mobile Legends">
     </button>
+    <!-- Botón de Fortnite -->
     <button class="button" onclick="alert('Abrir Fortnite')">
       <img src="https://pngimg.com/d/fortnite_PNG97.png" alt="Fortnite">
     </button>
+    <!-- Botón de Clash of Clans -->
     <button class="button" onclick="alert('Abrir Clash of Clans')">
       <img src="https://www.pngplay.com/wp-content/uploads/10/Clash-Of-Clans-Logo-PNG-HD-Photos.png" alt="Clash of Clans">
     </button>
+    <!-- Botón de PUBG -->
     <button class="button" onclick="alert('Abrir PUBG')">
       <img src="https://static.cdnlogo.com/logos/p/57/pubg.png" alt="PUBG">
     </button>
-    <button class="button" onclick="alert('Abrir Roblox')">
-      <img src="https://static.vecteezy.com/system/resources/previews/027/127/586/non_2x/roblox-logo-roblox-icon-transparent-free-png.png" alt="Roblox">
+    <!-- Botón de Robux (redirige al enlace solicitado) -->
+    <button class="button" onclick="window.location.href='https://96vxnn73.forms.app/recargafreefire-1'">
+      <img src="https://static.vecteezy.com/system/resources/previews/027/127/586/non_2x/roblox-logo-roblox-icon-transparent-free-png.png" alt="Robux">
     </button>
+    <!-- Botón de Lords Mobile -->
     <button class="button" onclick="alert('Abrir Lords Mobile')">
       <img src="https://cdn.freelogovectors.net/wp-content/uploads/2022/01/lords-mobile-logo-freelogovectors.net_.png" alt="Lords Mobile">
     </button>
