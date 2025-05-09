@@ -91,6 +91,19 @@
         font-size: 20px;
         padding: 10px 15px;
       }
+      
+      .promo-popup {
+        width: 95% !important;
+        padding: 15px !important;
+      }
+      
+      .promo-title {
+        font-size: 18px !important;
+      }
+      
+      .promo-item {
+        font-size: 14px !important;
+      }
     }
 
     /* Estilos para la ventana de advertencia */
@@ -239,9 +252,144 @@
       height: 100%;
       border: none;
     }
+    
+    /* Popup promocional */
+    .promo-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.9);
+      z-index: 20;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-image: url('https://wallpapercave.com/wp/wp4923981.jpg');
+      background-size: cover;
+      background-position: center;
+      background-blend-mode: overlay;
+    }
+    
+    .promo-popup {
+      width: 80%;
+      max-width: 600px;
+      background-color: rgba(0, 0, 0, 0.85);
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.2);
+      text-align: center;
+      border: 2px solid #ff00ff;
+      position: relative;
+      backdrop-filter: blur(3px);
+    }
+    
+    .promo-close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #ff0000;
+      color: white;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 14px;
+      border: 1px solid white;
+    }
+    
+    .promo-title {
+      color: #00ff00;
+      font-size: 24px;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      text-shadow: 0 0 10px #00ff00;
+    }
+    
+    .promo-content {
+      text-align: left;
+      color: #fff;
+    }
+    
+    .promo-item {
+      margin-bottom: 15px;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      border-radius: 5px;
+      background-color: rgba(255,255,255,0.1);
+      border-left: 3px solid #ff00ff;
+    }
+    
+    .promo-item span {
+      margin-left: 10px;
+    }
+    
+    .promo-highlight {
+      color: #ffff00;
+      font-weight: bold;
+      text-shadow: 0 0 5px #ffff00;
+    }
+    
+    .promo-footer {
+      margin-top: 25px;
+      color: #00ffff;
+      font-weight: bold;
+      text-shadow: 0 0 5px #00ffff;
+      font-size: 18px;
+    }
+    
+    .promo-emoji {
+      font-size: 20px;
+      margin-right: 8px;
+    }
   </style>
 </head>
 <body>
+  <!-- Popup promocional -->
+  <div class="promo-overlay" id="promoOverlay">
+    <div class="promo-popup">
+      <div class="promo-close-btn" onclick="closePromo()">X</div>
+      <h2 class="promo-title">🎮🔥 AHORA TUS RECARGAS DE FREE FIRE TE TRAEN OBSEQUIOS 🔥🎮</h2>
+      
+      <div class="promo-content">
+        <div class="promo-item">
+          <span class="promo-emoji">💎</span>
+          <span><span class="promo-highlight">RECARGAS DE 310 DIAMANTES</span> + CUENTA CANVA PRO PERSONALIZADA</span>
+        </div>
+        
+        <div class="promo-item">
+          <span class="promo-emoji">💎</span>
+          <span><span class="promo-highlight">RECARGAS DE 520 DIAMANTES</span> + PANTALLA VIX+</span>
+        </div>
+        
+        <div class="promo-item">
+          <span class="promo-emoji">💎</span>
+          <span><span class="promo-highlight">RECARGAS DE 1060 DIAMANTES</span> + PANTALLA CRUNCHYROLL</span>
+        </div>
+        
+        <div class="promo-item">
+          <span class="promo-emoji">💎</span>
+          <span><span class="promo-highlight">RECARGAS DE 2180 DIAMANTES</span> + PANTALLA AMAZON PRIME</span>
+        </div>
+        
+        <div class="promo-item">
+          <span class="promo-emoji">💎</span>
+          <span><span class="promo-highlight">RECARGAS DE 5.600 DIAMANTES</span> + PANTALLA NETFLIX Y PANTALLA DISNEY PLUS CON ESPN</span>
+        </div>
+      </div>
+      
+      <div class="promo-footer">
+        <span class="promo-emoji">🎁</span> MÁS DE 5 PINES DE FREE FIRE DE 100 EN UN DIA DE COMPRA = CUENTA CANVA PRO PERSONALIZADA + PANTALLA CRUNCHYROLL O VIX +
+      </div>
+    </div>
+  </div>
+
   <!-- Formulario de fondo -->
   <div class="background-form" id="backgroundForm">
     <iframe id="formIframe" src="" title="Formulario"></iframe>
@@ -315,6 +463,16 @@
   <script>
     // Variable para almacenar la URL del formulario
     let currentFormUrl = '';
+    
+    // Mostrar popup promocional al cargar la página
+    window.onload = function() {
+      document.getElementById('promoOverlay').style.display = 'flex';
+    };
+    
+    // Función para cerrar el popup promocional
+    function closePromo() {
+      document.getElementById('promoOverlay').style.display = 'none';
+    }
     
     // Función para preparar el formulario
     function prepareForm(url) {
