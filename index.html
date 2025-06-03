@@ -91,128 +91,6 @@
         font-size: 20px;
         padding: 10px 15px;
       }
-      
-      .promo-popup {
-        width: 95% !important;
-        padding: 15px !important;
-      }
-      
-      .promo-title {
-        font-size: 18px !important;
-      }
-      
-      .promo-item {
-        font-size: 14px !important;
-      }
-    }
-
-    /* Estilos para la ventana de advertencia */
-    .warning-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.8);
-      z-index: 10;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      display: none;
-    }
-
-    .warning-container {
-      width: 90%;
-      max-width: 500px;
-      background-color: #fff;
-      border-radius: 15px;
-      padding: 25px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-      text-align: center;
-      border-left: 5px solid #ffc107;
-    }
-
-    .warning-header {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
-
-    .warning-icon {
-      font-size: 30px;
-      margin-right: 10px;
-      color: #ffc107;
-    }
-
-    .warning-title {
-      font-size: 22px;
-      font-weight: bold;
-      color: #343a40;
-      margin: 0;
-      text-transform: uppercase;
-    }
-
-    .warning-content {
-      text-align: left;
-      margin-bottom: 25px;
-      line-height: 1.6;
-      color: #495057;
-    }
-
-    .warning-item {
-      display: flex;
-      align-items: flex-start;
-      margin-bottom: 12px;
-    }
-
-    .item-icon {
-      margin-right: 10px;
-      font-size: 20px;
-    }
-
-    .banks-logos {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin: 20px 0;
-      align-items: center;
-    }
-
-    .bank-logo {
-      height: 50px;
-      object-fit: contain;
-    }
-
-    .lock-icon {
-      height: 60px;
-      object-fit: contain;
-    }
-
-    .continue-btn {
-      background-color: #28a745;
-      color: white;
-      border: none;
-      padding: 12px 25px;
-      border-radius: 30px;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: bold;
-      transition: all 0.3s;
-      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-      text-transform: uppercase;
-    }
-
-    .continue-btn:hover {
-      background-color: #218838;
-      transform: translateY(-2px);
-      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
-    }
-
-    .important-text {
-      font-weight: bold;
-      text-transform: uppercase;
-      color: #dc3545;
     }
 
     /* Botón de cerrar */
@@ -252,144 +130,9 @@
       height: 100%;
       border: none;
     }
-    
-    /* Popup promocional */
-    .promo-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.9);
-      z-index: 20;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-image: url('https://wallpapercave.com/wp/wp4923981.jpg');
-      background-size: cover;
-      background-position: center;
-      background-blend-mode: overlay;
-    }
-    
-    .promo-popup {
-      width: 80%;
-      max-width: 600px;
-      background-color: rgba(0, 0, 0, 0.85);
-      border-radius: 15px;
-      padding: 30px;
-      box-shadow: 0 0 20px rgba(255,255,255,0.2);
-      text-align: center;
-      border: 2px solid #ff00ff;
-      position: relative;
-      backdrop-filter: blur(3px);
-    }
-    
-    .promo-close-btn {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background-color: #ff0000;
-      color: white;
-      width: 25px;
-      height: 25px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      font-weight: bold;
-      font-size: 14px;
-      border: 1px solid white;
-    }
-    
-    .promo-title {
-      color: #00ff00;
-      font-size: 24px;
-      margin-bottom: 20px;
-      text-transform: uppercase;
-      text-shadow: 0 0 10px #00ff00;
-    }
-    
-    .promo-content {
-      text-align: left;
-      color: #fff;
-    }
-    
-    .promo-item {
-      margin-bottom: 15px;
-      font-size: 16px;
-      display: flex;
-      align-items: center;
-      padding: 10px;
-      border-radius: 5px;
-      background-color: rgba(255,255,255,0.1);
-      border-left: 3px solid #ff00ff;
-    }
-    
-    .promo-item span {
-      margin-left: 10px;
-    }
-    
-    .promo-highlight {
-      color: #ffff00;
-      font-weight: bold;
-      text-shadow: 0 0 5px #ffff00;
-    }
-    
-    .promo-footer {
-      margin-top: 25px;
-      color: #00ffff;
-      font-weight: bold;
-      text-shadow: 0 0 5px #00ffff;
-      font-size: 18px;
-    }
-    
-    .promo-emoji {
-      font-size: 20px;
-      margin-right: 8px;
-    }
   </style>
 </head>
 <body>
-  <!-- Popup promocional -->
-  <div class="promo-overlay" id="promoOverlay">
-    <div class="promo-popup">
-      <div class="promo-close-btn" onclick="closePromo()">X</div>
-      <h2 class="promo-title">🎮🔥 AHORA TUS RECARGAS DE FREE FIRE TE TRAEN OBSEQUIOS 🔥🎮</h2>
-      
-      <div class="promo-content">
-        <div class="promo-item">
-          <span class="promo-emoji">💎</span>
-          <span><span class="promo-highlight">RECARGAS DE 310 DIAMANTES</span> + CUENTA CANVA PRO PERSONALIZADA</span>
-        </div>
-        
-        <div class="promo-item">
-          <span class="promo-emoji">💎</span>
-          <span><span class="promo-highlight">RECARGAS DE 520 DIAMANTES</span> + PANTALLA VIX+</span>
-        </div>
-        
-        <div class="promo-item">
-          <span class="promo-emoji">💎</span>
-          <span><span class="promo-highlight">RECARGAS DE 1060 DIAMANTES</span> + PANTALLA CRUNCHYROLL</span>
-        </div>
-        
-        <div class="promo-item">
-          <span class="promo-emoji">💎</span>
-          <span><span class="promo-highlight">RECARGAS DE 2180 DIAMANTES</span> + PANTALLA AMAZON PRIME</span>
-        </div>
-        
-        <div class="promo-item">
-          <span class="promo-emoji">💎</span>
-          <span><span class="promo-highlight">RECARGAS DE 5.600 DIAMANTES</span> + PANTALLA NETFLIX Y PANTALLA DISNEY PLUS CON ESPN</span>
-        </div>
-      </div>
-      
-      <div class="promo-footer">
-        <span class="promo-emoji">🎁</span> MÁS DE 5 PINES DE FREE FIRE DE 100 EN UN DIA DE COMPRA = CUENTA CANVA PRO PERSONALIZADA + PANTALLA CRUNCHYROLL O VIX +
-      </div>
-    </div>
-  </div>
-
   <!-- Formulario de fondo -->
   <div class="background-form" id="backgroundForm">
     <iframe id="formIframe" src="" title="Formulario"></iframe>
@@ -398,52 +141,20 @@
   <!-- Botón de cerrar -->
   <div class="form-close-btn" id="closeBtn" onclick="closeForm()">X</div>
 
-  <!-- Ventana de advertencia -->
-  <div class="warning-overlay" id="warningOverlay">
-    <div class="warning-container">
-      <div class="warning-header">
-        <div class="warning-icon">⚠️</div>
-        <h1 class="warning-title">advertencia importante</h1>
-      </div>
-
-      <div class="warning-content">
-        <div class="warning-item">
-          <span class="item-icon">💳</span>
-          <span><span class="important-text">si desea realizar una compra utilizando el método de pago móvil desde banesco:</span></span>
-        </div>
-        <div class="warning-item">
-          <span class="item-icon">🚫</span>
-          <span><span class="important-text">no se están recibiendo pagos móviles de esta entidad bancaria (banesco).</span></span>
-        </div>
-        <div class="warning-item">
-          <span class="item-icon">⚙️</span>
-          <span>Esto se debe a una falla en el sistema de los bancos, que no permite visualizar la operación de forma inmediata.</span>
-        </div>
-      </div>
-
-      <div class="banks-logos">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Banesco_logo.svg/2560px-Banesco_logo.svg.png" alt="Banesco" class="bank-logo">
-        <img src="https://png.pngtree.com/png-clipart/20190905/original/pngtree-forbidden-lock-cartoon-icon-png-image_4512034.jpg" alt="Bloqueado" class="lock-icon">
-      </div>
-
-      <button class="continue-btn" onclick="continueToForm()">Entendido, continuar</button>
-    </div>
-  </div>
-
   <!-- Contenido principal -->
   <h1>ELIGE EL JUEGO QUE DESEAS RECARGAR</h1>
   <div class="button-container">
     <!-- Botones con sus funciones originales -->
-    <button class="button" onclick="prepareForm('https://online.forms.app/respuestasdereportesdefa/recargafreefire')">
+    <button class="button" onclick="openForm('https://online.forms.app/respuestasdereportesdefa/recargafreefire')">
       <img src="https://brandlogos.net/wp-content/uploads/2022/07/free_fire-logo_brandlogos.net_xvnua.png" alt="Free Fire">
     </button>
-    <button class="button" onclick="prepareForm('https://vendeygana2.github.io/RECARGACP/')">
+    <button class="button" onclick="openForm('https://vendeygana2.github.io/RECARGACP/')">
       <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Call_of_Duty_Mobile_Logo.png" alt="Call of Duty">
     </button>
-    <button class="button" onclick="prepareForm('https://vendeygana.forms.app/mobilelegends')">
+    <button class="button" onclick="openForm('https://vendeygana.forms.app/mobilelegends')">
       <img src="https://upload.wikimedia.org/wikipedia/en/thumb/6/61/Mobile-legends-logo.svg/2560px-Mobile-legends-logo.svg.png" alt="Mobile Legends">
     </button>
-    <button class="button" onclick="prepareForm('https://vendeygana2.github.io/FORTNITE/')">
+    <button class="button" onclick="openForm('https://vendeygana2.github.io/FORTNITE/')">
       <img src="https://pngimg.com/d/fortnite_PNG97.png" alt="Fortnite">
     </button>
     <button class="button" onclick="showAlert('Abrir Clash of Clans')">
@@ -452,7 +163,7 @@
     <button class="button" onclick="showAlert('Abrir PUBG')">
       <img src="https://static.cdnlogo.com/logos/p/57/pubg.png" alt="PUBG">
     </button>
-    <button class="button" onclick="prepareForm('https://96vxnn73.forms.app/recargafreefire-1')">
+    <button class="button" onclick="openForm('https://96vxnn73.forms.app/recargafreefire-1')">
       <img src="https://static.vecteezy.com/system/resources/previews/027/127/586/non_2x/roblox-logo-roblox-icon-transparent-free-png.png" alt="Robux">
     </button>
     <button class="button" onclick="showAlert('Abrir Lords Mobile')">
@@ -461,36 +172,16 @@
   </div>
 
   <script>
-    // Variable para almacenar la URL del formulario
-    let currentFormUrl = '';
-    
-    // Mostrar popup promocional al cargar la página
-    window.onload = function() {
-      document.getElementById('promoOverlay').style.display = 'flex';
-    };
-    
-    // Función para cerrar el popup promocional
-    function closePromo() {
-      document.getElementById('promoOverlay').style.display = 'none';
-    }
-    
-    // Función para preparar el formulario
-    function prepareForm(url) {
-      currentFormUrl = url;
-      document.getElementById('warningOverlay').style.display = 'flex';
+    // Función para abrir el formulario directamente
+    function openForm(url) {
+      document.getElementById('formIframe').src = url;
+      document.getElementById('backgroundForm').style.display = 'block';
+      document.getElementById('closeBtn').style.display = 'flex';
     }
     
     // Función para mostrar alertas
     function showAlert(message) {
       alert(message);
-    }
-    
-    // Función para continuar al formulario
-    function continueToForm() {
-      document.getElementById('warningOverlay').style.display = 'none';
-      document.getElementById('formIframe').src = currentFormUrl;
-      document.getElementById('backgroundForm').style.display = 'block';
-      document.getElementById('closeBtn').style.display = 'flex';
     }
     
     // Función para cerrar el formulario
