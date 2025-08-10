@@ -93,11 +93,32 @@
       }
     }
 
-    /* Botón de cerrar */
-    .form-close-btn {
+    /* Modal emergente */
+    .popup-modal {
       position: fixed;
-      top: 15px;
-      right: 15px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
+      max-width: 800px;
+      max-height: 90vh;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      z-index: 100;
+      display: none;
+      overflow: auto;
+    }
+    
+    .popup-content {
+      padding: 20px;
+      position: relative;
+    }
+    
+    .popup-close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
       background-color: #dc3545;
       color: white;
       width: 30px;
@@ -108,81 +129,85 @@
       justify-content: center;
       cursor: pointer;
       font-weight: bold;
-      z-index: 11;
       border: 2px solid white;
       box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-      display: none;
+      z-index: 101;
     }
-
-    /* Formulario de fondo */
-    .background-form {
-      position: fixed;
+    
+    .popup-iframe {
       width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      z-index: 5;
-      display: none;
-    }
-
-    .background-form iframe {
-      width: 100%;
-      height: 100%;
+      height: 70vh;
       border: none;
+      border-radius: 8px;
     }
     
-    /* Modal de advertencia */
-    .warning-modal {
+    .modal-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0,0,0,0.8);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 20;
+      background-color: rgba(0,0,0,0.7);
+      z-index: 99;
+      display: none;
     }
     
-    .warning-content {
+    /* Modal de horario */
+    .schedule-modal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
+      max-width: 500px;
       background-color: white;
       padding: 25px;
       border-radius: 10px;
-      max-width: 500px;
-      width: 90%;
-      text-align: center;
       box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-      position: relative;
+      z-index: 100;
+      display: none;
     }
     
-    .warning-icon {
+    .schedule-icon {
       font-size: 50px;
       color: #ffcc00;
       margin-bottom: 15px;
+      text-align: center;
     }
     
-    .warning-title {
+    .schedule-title {
       font-size: 22px;
       font-weight: bold;
-      margin-bottom: 5px;
+      margin-bottom: 15px;
       color: #d9534f;
+      text-align: center;
     }
     
-    .banesco-warning {
+    .schedule-text {
+      font-size: 16px;
+      margin-bottom: 10px;
+      line-height: 1.5;
+      text-align: center;
+    }
+    
+    .schedule-subtitle {
       font-size: 18px;
       font-weight: bold;
-      color: #d9534f;
-      margin-bottom: 15px;
+      margin: 15px 0 10px;
+      color: #2c3e50;
+      text-align: center;
     }
     
-    .warning-text {
+    .schedule-hours {
       font-size: 16px;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       line-height: 1.5;
+      color: #2c3e50;
+      font-weight: bold;
+      text-align: center;
     }
     
-    .warning-btn {
+    .schedule-btn {
       background-color: #d9534f;
       color: white;
       border: none;
@@ -191,111 +216,70 @@
       cursor: pointer;
       font-weight: bold;
       transition: background-color 0.3s;
+      margin-top: 10px;
+      display: block;
+      margin: 0 auto;
     }
     
-    .warning-btn:hover {
+    .schedule-btn:hover {
       background-color: #c9302c;
     }
     
-    .banesco-logo {
-      width: 150px;
-      margin: 15px auto;
-      display: block;
-    }
-    
-    /* Modal de imagen */
-    .image-modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.8);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 20;
-      display: none;
-    }
-    
-    .image-content {
-      max-width: 90%;
-      max-height: 90%;
-      position: relative;
-    }
-    
-    .image-content img {
-      max-width: 100%;
-      max-height: 90vh;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-    }
-    
-    .image-close-btn {
-      position: absolute;
-      top: -15px;
-      right: -15px;
-      background-color: #dc3545;
-      color: white;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
+    .thank-you {
+      font-size: 24px;
+      color: #27ae60;
       font-weight: bold;
-      border: 2px solid white;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      margin-bottom: 15px;
+      text-align: center;
     }
   </style>
 </head>
 <body>
-  <!-- Modal de advertencia (se muestra al cargar la página) -->
-  <div class="warning-modal" id="warningModal">
-    <div class="warning-content">
-      <div class="warning-icon">⚠️</div>
-      <div class="warning-title">IMPORTANTE: MÉTODOS DE PAGO</div>
-      <div class="banesco-warning">NO ACEPTAMOS PAGO MÓVIL DE: BANESCO</div>
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Banesco_logo.svg/2560px-Banesco_logo.svg.png" alt="Banesco Logo" class="banesco-logo">
-      <div class="warning-text">
-        Mercantil y Banesco no reflejan de forma inmediata las operaciones.<br><br>
-        POR FAVOR USE OTRO BANCO para realizar su pago.
+  <!-- Modal de horario no permitido -->
+  <div class="schedule-modal" id="scheduleModal">
+    <div class="schedule-content">
+      <div class="thank-you">¡GRACIAS POR ESTAR AQUÍ!</div>
+      <div class="schedule-icon">⏰</div>
+      <div class="schedule-title">HORARIO NO DISPONIBLE</div>
+      <div class="schedule-text" id="scheduleMessage">
+        Actualmente estamos fuera de nuestro horario de atención.
       </div>
-      <button class="warning-btn" onclick="closeWarning()">ENTENDIDO</button>
+      <div class="schedule-subtitle">Puedes solicitar tu recarga ahora mismo</div>
+      <div class="schedule-text">
+        Al estar trabajando la procesamos de forma inmediata.
+      </div>
+      <div class="schedule-subtitle">Nuestro horario de atención:</div>
+      <div class="schedule-hours">
+        Lunes a Sábado: 8:00 AM - 9:00 PM<br>
+        Domingo: 10:00 AM - 8:00 PM
+      </div>
+      <button class="schedule-btn" onclick="closeScheduleModal()">ENTENDIDO</button>
     </div>
   </div>
 
-  <!-- Modal de imagen (aparece después de cerrar la advertencia) -->
-  <div class="image-modal" id="imageModal">
-    <div class="image-content">
-      <span class="image-close-btn" onclick="closeImageModal()">X</span>
-      <img src="https://i.pinimg.com/736x/4a/03/8e/4a038e95687bed944b248fb750817986.jpg" alt="Información importante">
+  <!-- Modal emergente para formularios -->
+  <div class="modal-overlay" id="modalOverlay"></div>
+  <div class="popup-modal" id="popupModal">
+    <span class="popup-close-btn" onclick="closePopupModal()">X</span>
+    <div class="popup-content">
+      <iframe class="popup-iframe" id="popupIframe" src="" title="Formulario"></iframe>
     </div>
   </div>
-
-  <!-- Formulario de fondo -->
-  <div class="background-form" id="backgroundForm">
-    <iframe id="formIframe" src="" title="Formulario"></iframe>
-  </div>
-
-  <!-- Botón de cerrar -->
-  <div class="form-close-btn" id="closeBtn" onclick="closeForm()">X</div>
 
   <!-- Contenido principal -->
   <h1>ELIGE EL JUEGO QUE DESEAS RECARGAR</h1>
   <div class="button-container">
-    <!-- Botones con sus funciones originales -->
-    <button class="button" onclick="openForm('https://online.forms.app/respuestasdereportesdefa/recargafreefire')">
+    <!-- Botones con sus funciones -->
+    <button class="button" onclick="checkScheduleAndOpen('https://online.forms.app/respuestasdereportesdefa/recargafreefire', true)">
       <img src="https://brandlogos.net/wp-content/uploads/2022/07/free_fire-logo_brandlogos.net_xvnua.png" alt="Free Fire">
     </button>
-    <button class="button" onclick="openForm('https://vendeygana2.github.io/RECARGACP/')">
+    <button class="button" onclick="checkScheduleAndOpen('https://vendeygana2.github.io/RECARGACP/')">
       <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Call_of_Duty_Mobile_Logo.png" alt="Call of Duty">
     </button>
-    <button class="button" onclick="openForm('https://vendeygana.forms.app/mobilelegends')">
+    <button class="button" onclick="checkScheduleAndOpen('https://vendeygana.forms.app/mobilelegends')">
       <img src="https://upload.wikimedia.org/wikipedia/en/thumb/6/61/Mobile-legends-logo.svg/2560px-Mobile-legends-logo.svg.png" alt="Mobile Legends">
     </button>
-    <button class="button" onclick="openForm('https://vendeygana2.github.io/FORTNITE/')">
+    <button class="button" onclick="checkScheduleAndOpen('https://vendeygana2.github.io/FORTNITE/')">
       <img src="https://pngimg.com/d/fortnite_PNG97.png" alt="Fortnite">
     </button>
     <button class="button" onclick="showAlert('Abrir Clash of Clans')">
@@ -304,7 +288,7 @@
     <button class="button" onclick="showAlert('Abrir PUBG')">
       <img src="https://static.cdnlogo.com/logos/p/57/pubg.png" alt="PUBG">
     </button>
-    <button class="button" onclick="openForm('https://96vxnn73.forms.app/recargafreefire-1')">
+    <button class="button" onclick="checkScheduleAndOpen('https://96vxnn73.forms.app/recargafreefire-1')">
       <img src="https://static.vecteezy.com/system/resources/previews/027/127/586/non_2x/roblox-logo-roblox-icon-transparent-free-png.png" alt="Robux">
     </button>
     <button class="button" onclick="showAlert('Abrir Lords Mobile')">
@@ -313,30 +297,56 @@
   </div>
 
   <script>
-    // Mostrar advertencia al cargar la página
-    document.addEventListener('DOMContentLoaded', function() {
-      document.getElementById('warningModal').style.display = 'flex';
-    });
-    
-    // Función para cerrar la advertencia y mostrar la imagen
-    function closeWarning() {
-      document.getElementById('warningModal').style.display = 'none';
-      // Mostrar la imagen después de 300ms (puedes ajustar este tiempo)
-      setTimeout(function() {
-        document.getElementById('imageModal').style.display = 'flex';
-      }, 300);
+    // Función para verificar si estamos fuera del horario permitido
+    function isOutsideWorkingHours() {
+      const now = new Date();
+      const day = now.getDay(); // 0 (Domingo) a 6 (Sábado)
+      const hours = now.getHours();
+      
+      // Horario permitido:
+      // Lunes a Sábado: 8:00 AM - 9:00 PM (8-21)
+      // Domingo: 10:00 AM - 8:00 PM (10-20)
+      
+      if (day >= 1 && day <= 6) { // Lunes a Sábado
+        return hours < 8 || hours >= 21;
+      } else { // Domingo
+        return hours < 10 || hours >= 20;
+      }
     }
     
-    // Función para cerrar el modal de imagen
-    function closeImageModal() {
-      document.getElementById('imageModal').style.display = 'none';
+    // Función para verificar el horario antes de abrir un formulario
+    function checkScheduleAndOpen(url, isFreeFire = false) {
+      if (isOutsideWorkingHours()) {
+        document.getElementById('scheduleModal').style.display = 'block';
+        document.getElementById('modalOverlay').style.display = 'block';
+      } else {
+        if(isFreeFire) {
+          // Para Free Fire usamos su formulario original pero en ventana emergente
+          openPopupModal('https://online.forms.app/respuestasdereportesdefa/recargafreefire');
+        } else {
+          openPopupModal(url);
+        }
+      }
     }
     
-    // Función para abrir el formulario directamente
-    function openForm(url) {
-      document.getElementById('formIframe').src = url;
-      document.getElementById('backgroundForm').style.display = 'block';
-      document.getElementById('closeBtn').style.display = 'flex';
+    // Función para abrir el modal emergente
+    function openPopupModal(url) {
+      document.getElementById('popupIframe').src = url;
+      document.getElementById('popupModal').style.display = 'block';
+      document.getElementById('modalOverlay').style.display = 'block';
+    }
+    
+    // Función para cerrar el modal emergente
+    function closePopupModal() {
+      document.getElementById('popupModal').style.display = 'none';
+      document.getElementById('modalOverlay').style.display = 'none';
+      document.getElementById('popupIframe').src = '';
+    }
+    
+    // Función para cerrar el modal de horario
+    function closeScheduleModal() {
+      document.getElementById('scheduleModal').style.display = 'none';
+      document.getElementById('modalOverlay').style.display = 'none';
     }
     
     // Función para mostrar alertas
@@ -344,12 +354,20 @@
       alert(message);
     }
     
-    // Función para cerrar el formulario
-    function closeForm() {
-      document.getElementById('backgroundForm').style.display = 'none';
-      document.getElementById('closeBtn').style.display = 'none';
-      document.getElementById('formIframe').src = '';
-    }
+    // Cerrar modales al hacer clic fuera de ellos
+    document.getElementById('modalOverlay').addEventListener('click', function() {
+      closePopupModal();
+      closeScheduleModal();
+    });
+    
+    // Evitar que el clic en el modal se propague al overlay
+    document.getElementById('popupModal').addEventListener('click', function(e) {
+      e.stopPropagation();
+    });
+    
+    document.getElementById('scheduleModal').addEventListener('click', function(e) {
+      e.stopPropagation();
+    });
   </script>
 </body>
 </html>
