@@ -93,8 +93,8 @@
       }
     }
 
-    /* Modal emergente SIN MARCO para Free Fire */
-    .popup-modal-freefire {
+    /* Modal emergente SIN MARCO para todos los juegos */
+    .popup-modal {
       position: fixed;
       top: 50%;
       left: 50%;
@@ -110,20 +110,20 @@
       overflow: hidden;
     }
     
-    .popup-content-freefire {
+    .popup-content {
       width: 100%;
       height: 100%;
       position: relative;
     }
     
-    .popup-iframe-freefire {
+    .popup-iframe {
       width: 100%;
       height: 100%;
       border: none;
       background-color: white;
     }
     
-    .popup-close-btn-freefire {
+    .popup-close-btn {
       position: absolute;
       top: 10px;
       right: 10px;
@@ -317,17 +317,16 @@
     </div>
   </div>
 
-  <!-- Modal para Free Fire SIN MARCO -->
-  <div class="modal-overlay" id="modalOverlayFreeFire"></div>
-  <div class="popup-modal-freefire" id="popupModalFreeFire">
-    <div class="popup-content-freefire">
-      <span class="popup-close-btn-freefire" onclick="closeFreeFireModal()">×</span>
-      <iframe class="popup-iframe-freefire" id="popupIframeFreeFire" src="" title="Formulario Free Fire" frameborder="0"></iframe>
+  <!-- Modal para formularios SIN MARCO -->
+  <div class="modal-overlay" id="modalOverlay"></div>
+  <div class="popup-modal" id="popupModal">
+    <div class="popup-content">
+      <span class="popup-close-btn" onclick="closeModal()">×</span>
+      <iframe class="popup-iframe" id="popupIframe" src="" title="Formulario de Recarga" frameborder="0"></iframe>
     </div>
   </div>
 
   <!-- Modal para Roblox -->
-  <div class="modal-overlay" id="modalOverlayRoblox"></div>
   <div class="roblox-modal" id="robloxModal">
     <div class="roblox-header">
       <img src="https://static.vecteezy.com/system/resources/previews/027/127/586/non_2x/roblox-logo-roblox-icon-transparent-free-png.png" alt="Roblox Logo" class="roblox-logo">
@@ -346,28 +345,28 @@
   <!-- Contenido principal -->
   <h1>ELIGE EL JUEGO QUE DESEAS RECARGAR</h1>
   <div class="button-container">
-    <button class="button" onclick="openFreeFireModal()">
+    <button class="button" onclick="openModal('https://online.forms.app/respuestasdereportesdefa/recargafreefire')">
       <img src="https://brandlogos.net/wp-content/uploads/2022/07/free_fire-logo_brandlogos.net_xvnua.png" alt="Free Fire">
     </button>
-    <button class="button" onclick="checkScheduleAndOpen('https://vendeygana2.github.io/RECARGACP/')">
+    <button class="button" onclick="openModal('https://vendeygana2.github.io/RECARGACP/')">
       <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Call_of_Duty_Mobile_Logo.png" alt="Call of Duty">
     </button>
-    <button class="button" onclick="checkScheduleAndOpen('https://vendeygana.forms.app/mobilelegends')">
+    <button class="button" onclick="openModal('https://vendeygana.forms.app/mobilelegends')">
       <img src="https://upload.wikimedia.org/wikipedia/en/thumb/6/61/Mobile-legends-logo.svg/2560px-Mobile-legends-logo.svg.png" alt="Mobile Legends">
     </button>
-    <button class="button" onclick="checkScheduleAndOpen('https://vendeygana2.github.io/FORTNITE/')">
+    <button class="button" onclick="openModal('https://vendeygana2.github.io/FORTNITE/')">
       <img src="https://pngimg.com/d/fortnite_PNG97.png" alt="Fortnite">
     </button>
-    <button class="button" onclick="showAlert('Abrir Clash of Clans')">
+    <button class="button" onclick="openModal('https://example.com/clashofclans')">
       <img src="https://www.pngplay.com/wp-content/uploads/10/Clash-Of-Clans-Logo-PNG-HD-Photos.png" alt="Clash of Clans">
     </button>
-    <button class="button" onclick="showAlert('Abrir PUBG')">
+    <button class="button" onclick="openModal('https://example.com/pubg')">
       <img src="https://static.cdnlogo.com/logos/p/57/pubg.png" alt="PUBG">
     </button>
     <button class="button" onclick="openRobloxModal()">
       <img src="https://static.vecteezy.com/system/resources/previews/027/127/586/non_2x/roblox-logo-roblox-icon-transparent-free-png.png" alt="Robux">
     </button>
-    <button class="button" onclick="showAlert('Abrir Lords Mobile')">
+    <button class="button" onclick="openModal('https://example.com/lordsmobile')">
       <img src="https://cdn.freelogovectors.net/wp-content/uploads/2022/01/lords-mobile-logo-freelogovectors.net_.png" alt="Lords Mobile">
     </button>
   </div>
@@ -386,78 +385,63 @@
       }
     }
     
-    // Función para abrir Free Fire (sin marco)
-    function openFreeFireModal() {
+    // Función para abrir modal con formulario
+    function openModal(url) {
       if (isOutsideWorkingHours()) {
         document.getElementById('scheduleModal').style.display = 'block';
-        document.getElementById('modalOverlayFreeFire').style.display = 'block';
+        document.getElementById('modalOverlay').style.display = 'block';
       } else {
-        document.getElementById('popupIframeFreeFire').src = 'https://online.forms.app/respuestasdereportesdefa/recargafreefire';
-        document.getElementById('popupModalFreeFire').style.display = 'block';
-        document.getElementById('modalOverlayFreeFire').style.display = 'block';
+        document.getElementById('popupIframe').src = url;
+        document.getElementById('popupModal').style.display = 'block';
+        document.getElementById('modalOverlay').style.display = 'block';
       }
     }
     
-    // Función para cerrar Free Fire
-    function closeFreeFireModal() {
-      document.getElementById('popupModalFreeFire').style.display = 'none';
-      document.getElementById('modalOverlayFreeFire').style.display = 'none';
-      document.getElementById('popupIframeFreeFire').src = '';
-    }
-    
-    // Función para otros juegos
-    function checkScheduleAndOpen(url) {
-      if (isOutsideWorkingHours()) {
-        document.getElementById('scheduleModal').style.display = 'block';
-        document.getElementById('modalOverlayFreeFire').style.display = 'block';
-      } else {
-        window.open(url, '_blank');
-      }
+    // Función para cerrar modal
+    function closeModal() {
+      document.getElementById('popupModal').style.display = 'none';
+      document.getElementById('modalOverlay').style.display = 'none';
+      document.getElementById('popupIframe').src = '';
     }
     
     // Función para cerrar modal de horario
     function closeScheduleModal() {
       document.getElementById('scheduleModal').style.display = 'none';
-      document.getElementById('modalOverlayFreeFire').style.display = 'none';
-    }
-    
-    // Función para alertas
-    function showAlert(message) {
-      alert(message);
+      document.getElementById('modalOverlay').style.display = 'none';
     }
     
     // Función para abrir modal de Roblox
     function openRobloxModal() {
       if (isOutsideWorkingHours()) {
         document.getElementById('scheduleModal').style.display = 'block';
-        document.getElementById('modalOverlayFreeFire').style.display = 'block';
+        document.getElementById('modalOverlay').style.display = 'block';
       } else {
         document.getElementById('robloxModal').style.display = 'block';
-        document.getElementById('modalOverlayRoblox').style.display = 'block';
+        document.getElementById('modalOverlay').style.display = 'block';
       }
     }
     
     // Función para proceder al formulario de Roblox
     function proceedToRobloxForm() {
       closeRobloxModal();
-      window.open('https://96vxnn73.forms.app/recargafreefire-1', '_blank');
+      openModal('https://96vxnn73.forms.app/recargafreefire-1');
     }
     
     // Función para cerrar modal de Roblox
     function closeRobloxModal() {
       document.getElementById('robloxModal').style.display = 'none';
-      document.getElementById('modalOverlayRoblox').style.display = 'none';
+      document.getElementById('modalOverlay').style.display = 'none';
     }
     
     // Cerrar al hacer clic fuera
-    document.getElementById('modalOverlayFreeFire').addEventListener('click', function() {
-      closeFreeFireModal();
+    document.getElementById('modalOverlay').addEventListener('click', function() {
+      closeModal();
       closeScheduleModal();
       closeRobloxModal();
     });
     
     // Evitar propagación
-    document.getElementById('popupModalFreeFire').addEventListener('click', function(e) {
+    document.getElementById('popupModal').addEventListener('click', function(e) {
       e.stopPropagation();
     });
     
