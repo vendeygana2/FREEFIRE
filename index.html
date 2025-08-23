@@ -296,74 +296,9 @@
     .roblox-btn:hover {
       background-color: #0088cc;
     }
-
-    /* Modal de mantenimiento */
-    .maintenance-modal {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 90%;
-      max-width: 500px;
-      background-color: white;
-      border-radius: 10px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-      z-index: 102;
-      overflow: hidden;
-      text-align: center;
-      padding: 20px;
-    }
-    
-    .maintenance-icon {
-      font-size: 50px;
-      color: #ff9800;
-      margin-bottom: 15px;
-    }
-    
-    .maintenance-title {
-      font-size: 22px;
-      font-weight: bold;
-      color: #e53935;
-      margin-bottom: 15px;
-    }
-    
-    .maintenance-message {
-      font-size: 16px;
-      line-height: 1.5;
-      color: #555;
-      margin-bottom: 20px;
-      padding: 0 10px;
-    }
-    
-    .maintenance-btn {
-      background-color: #4285f4;
-      color: white;
-      border: none;
-      padding: 10px 25px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: 500;
-      transition: background-color 0.3s;
-      font-size: 16px;
-    }
-    
-    .maintenance-btn:hover {
-      background-color: #3367d6;
-    }
   </style>
 </head>
 <body>
-  <!-- Modal de mantenimiento -->
-  <div class="modal-overlay" id="maintenanceOverlay" style="display: block; z-index: 101;"></div>
-  <div class="maintenance-modal" id="maintenanceModal">
-    <div class="maintenance-icon">🔧</div>
-    <div class="maintenance-title">MANTENIMIENTO EN CURSO</div>
-    <div class="maintenance-message">
-      EN ESTOS MOMENTOS TENEMOS UNA VENTANA DE MANTENIMIENTO. EN BREVE NUESTROS SERVICIOS ESTARÁN NUEVAMENTE ACTIVOS.
-    </div>
-    <button class="maintenance-btn" onclick="closeMaintenanceModal()">ENTENDIDO</button>
-  </div>
-
   <!-- Modal de horario no permitido -->
   <div class="schedule-modal" id="scheduleModal">
     <div class="schedule-header">Horario no disponible</div>
@@ -438,12 +373,6 @@
   </div>
 
   <script>
-    // Función para cerrar modal de mantenimiento
-    function closeMaintenanceModal() {
-      document.getElementById('maintenanceModal').style.display = 'none';
-      document.getElementById('maintenanceOverlay').style.display = 'none';
-    }
-    
     // Función para verificar horario
     function isOutsideWorkingHours() {
       const now = new Date();
@@ -527,11 +456,6 @@
       closeRobloxModal();
     });
     
-    document.getElementById('maintenanceOverlay').addEventListener('click', function() {
-      // No permitir cerrar el modal de mantenimiento haciendo clic fuera
-      // Esto asegura que los usuarios vean el mensaje importante
-    });
-    
     // Evitar propagación
     document.getElementById('popupModalFreeFire').addEventListener('click', function(e) {
       e.stopPropagation();
@@ -542,10 +466,6 @@
     });
     
     document.getElementById('robloxModal').addEventListener('click', function(e) {
-      e.stopPropagation();
-    });
-    
-    document.getElementById('maintenanceModal').addEventListener('click', function(e) {
       e.stopPropagation();
     });
   </script>
