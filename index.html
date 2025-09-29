@@ -265,7 +265,7 @@
 </head>
 <body>
     <div class="button-container">
-        <button class="redirect-button" onclick="redirectToLink()">
+        <button class="redirect-button" onclick="window.open('https://cuentasvendeygana.company.site/products/recargas-juegos', '_blank')">
             <img src="https://i.pinimg.com/1200x/ff/b3/2e/ffb32e80ad335f11a5e897e520b67cad.jpg" 
                  alt="Recargas de Juegos" 
                  class="button-image">
@@ -300,12 +300,18 @@
     </div>
 
     <script>
-        function redirectToLink() {
-            window.location.href = "https://cuentasvendeygana.company.site/products/recargas-juegos";
-        }
+        // Método alternativo para asegurar la redirección
+        const button = document.querySelector('.redirect-button');
+        
+        button.addEventListener('click', function() {
+            // Método 1: Redirección directa
+            window.location.href = 'https://cuentasvendeygana.company.site/products/recargas-juegos';
+            
+            // Método 2: Abrir en nueva pestaña (como respaldo)
+            // window.open('https://cuentasvendeygana.company.site/products/recargas-juegos', '_blank');
+        });
 
         // Soporte para dispositivos táctiles
-        const button = document.querySelector('.redirect-button');
         const logosContainer = document.querySelector('.logos-container');
         let isHovering = false;
 
@@ -331,6 +337,11 @@
                 logosContainer.style.opacity = '0';
             }
         });
+
+        // Función adicional como respaldo
+        function redirectToLink() {
+            window.location.href = 'https://cuentasvendeygana.company.site/products/recargas-juegos';
+        }
     </script>
 </body>
 </html>
