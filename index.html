@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recargas de Juegos</title>
+    <title>Botón de Recargas</title>
     <style>
         * {
             margin: 0;
@@ -12,290 +12,211 @@
         }
         
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background: #ed7318;
-            overflow: hidden;
+            background-color: #ed7318;
             padding: 20px;
         }
         
+        .container {
+            text-align: center;
+            max-width: 800px;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 2.2rem;
+        }
+        
+        p {
+            color: #555;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
         .button-container {
-            position: relative;
             display: flex;
             justify-content: center;
-            align-items: center;
-            width: 100%;
-            max-width: 350px;
+            margin: 30px 0;
         }
         
-        .redirect-button {
-            border: none;
-            background: none;
+        .custom-button {
+            display: inline-block;
             cursor: pointer;
-            transition: all 0.3s ease;
+            border: none;
             border-radius: 12px;
-            overflow: visible;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-            padding: 0;
-            position: relative;
-            z-index: 10;
-            width: 100%;
-            display: block;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            max-width: 100%;
         }
         
-        .redirect-button:hover, .redirect-button:active {
-            transform: scale(1.05);
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+        .custom-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .custom-button:active {
+            transform: translateY(0);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
         }
         
         .button-image {
+            display: block;
             width: 100%;
             height: auto;
-            display: block;
-            border-radius: 12px;
-            transition: transform 0.3s ease;
+            max-width: 400px;
         }
         
-        .redirect-button:hover .button-image, .redirect-button:active .button-image {
-            transform: scale(1.02);
+        .info-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid #ed7318;
+            padding: 15px;
+            margin-top: 30px;
+            border-radius: 0 8px 8px 0;
+            text-align: left;
         }
         
-        .logos-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
+        .info-box h3 {
+            color: #ed7318;
+            margin-bottom: 10px;
         }
         
-        .button-container:hover .logos-container, .button-container:active .logos-container {
-            opacity: 1;
+        .typewriter-container {
+            position: relative;
+            min-height: 80px;
         }
         
-        .logo {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            background: white;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: bold;
-            font-size: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            text-align: center;
-            padding: 5px;
-            color: white;
-            opacity: 0;
+        .typewriter-text {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            line-height: 1.6;
         }
         
-        /* Netflix */
-        .logo-1 {
-            bottom: 10px;
-            left: 25%;
-            background: #E50914;
-            transform: translateY(0) scale(0);
+        .typewriter-cursor {
+            display: inline-block;
+            width: 2px;
+            background-color: #ed7318;
+            animation: blink 1s infinite;
+            margin-left: 2px;
         }
         
-        /* Amazon Prime */
-        .logo-2 {
-            bottom: 10px;
-            left: 40%;
-            background: #00A8E1;
-            transform: translateY(0) scale(0);
+        @keyframes blink {
+            0%, 50% {
+                opacity: 1;
+            }
+            51%, 100% {
+                opacity: 0;
+            }
         }
         
-        /* Disney Plus */
-        .logo-3 {
-            bottom: 10px;
-            left: 55%;
-            background: #113CCF;
-            transform: translateY(0) scale(0);
-        }
-        
-        /* Max */
-        .logo-4 {
-            bottom: 10px;
-            left: 70%;
-            background: #00A2FF;
-            transform: translateY(0) scale(0);
-        }
-        
-        /* Paramount */
-        .logo-5 {
-            bottom: 10px;
-            left: 15%;
-            background: #0066FF;
-            transform: translateY(0) scale(0);
-        }
-        
-        /* Crunchyroll */
-        .logo-6 {
-            bottom: 10px;
-            left: 85%;
-            background: #F47521;
-            transform: translateY(0) scale(0);
-        }
-        
-        .button-container:hover .logo-1, .button-container:active .logo-1 {
-            opacity: 1;
-            transform: translateY(-120px) scale(1);
-            transition-delay: 0.1s;
-        }
-        
-        .button-container:hover .logo-2, .button-container:active .logo-2 {
-            opacity: 1;
-            transform: translateY(-150px) scale(1);
-            transition-delay: 0.2s;
-        }
-        
-        .button-container:hover .logo-3, .button-container:active .logo-3 {
-            opacity: 1;
-            transform: translateY(-180px) scale(1);
-            transition-delay: 0.3s;
-        }
-        
-        .button-container:hover .logo-4, .button-container:active .logo-4 {
-            opacity: 1;
-            transform: translateY(-140px) scale(1);
-            transition-delay: 0.4s;
-        }
-        
-        .button-container:hover .logo-5, .button-container:active .logo-5 {
-            opacity: 1;
-            transform: translateY(-160px) scale(1);
-            transition-delay: 0.5s;
-        }
-        
-        .button-container:hover .logo-6, .button-container:active .logo-6 {
-            opacity: 1;
-            transform: translateY(-130px) scale(1);
-            transition-delay: 0.6s;
-        }
-
-        /* Efecto de cuerda de globo */
-        .logo::after {
-            content: '';
-            position: absolute;
-            bottom: -20px;
-            left: 50%;
-            width: 1px;
-            height: 20px;
-            background: rgba(255, 255, 255, 0.5);
-            transform: translateX(-50%);
-        }
-        
-        /* Estilos para móviles */
         @media (max-width: 768px) {
-            .button-container {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            p {
+                font-size: 1rem;
+            }
+            
+            .button-image {
                 max-width: 300px;
             }
-            
-            .logo {
-                width: 40px;
-                height: 40px;
-                font-size: 8px;
-            }
-            
-            .button-container:hover .logo-1, .button-container:active .logo-1 {
-                transform: translateY(-100px) scale(1);
-            }
-            
-            .button-container:hover .logo-2, .button-container:active .logo-2 {
-                transform: translateY(-130px) scale(1);
-            }
-            
-            .button-container:hover .logo-3, .button-container:active .logo-3 {
-                transform: translateY(-160px) scale(1);
-            }
-            
-            .button-container:hover .logo-4, .button-container:active .logo-4 {
-                transform: translateY(-120px) scale(1);
-            }
-            
-            .button-container:hover .logo-5, .button-container:active .logo-5 {
-                transform: translateY(-140px) scale(1);
-            }
-            
-            .button-container:hover .logo-6, .button-container:active .logo-6 {
-                transform: translateY(-110px) scale(1);
-            }
         }
         
-        /* Mensaje informativo para móviles */
-        .mobile-info {
-            display: none;
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 10px 15px;
-            border-radius: 8px;
-            font-size: 14px;
-            text-align: center;
-            width: 90%;
-            max-width: 300px;
-        }
-        
-        @media (max-width: 768px) {
-            .mobile-info {
-                display: block;
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .button-image {
+                max-width: 250px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="button-container">
-        <button class="redirect-button" onclick="redirectToLink()">
-            <img src="https://i.pinimg.com/1200x/ff/b3/2e/ffb32e80ad335f11a5e897e520b67cad.jpg" 
-                 alt="Recargas de Juegos" 
-                 class="button-image">
-        </button>
+    <div class="container">
+        <h1>Recargas para Juegos</h1>
+        <p>Haz clic en el botón para acceder a nuestro catálogo de recargas para tus juegos favoritos</p>
         
-        <div class="logos-container">
-            <div class="logo logo-1">Netflix</div>
-            <div class="logo logo-2">Amazon Prime</div>
-            <div class="logo logo-3">Disney Plus</div>
-            <div class="logo logo-4">Max</div>
-            <div class="logo logo-5">Paramount</div>
-            <div class="logo logo-6">Crunchyroll</div>
+        <div class="button-container">
+            <a href="https://cuentasvendeygana.company.site/products/recargas-juegos" target="_blank" class="custom-button">
+                <img src="https://i.pinimg.com/1200x/ff/b3/2e/ffb32e80ad335f11a5e897e520b67cad.jpg" 
+                     alt="Recargas para Juegos" 
+                     class="button-image">
+            </a>
         </div>
         
-        <div class="mobile-info">
-            Toca la imagen para acceder a las recargas de juegos
+        <div class="info-box">
+            <h3>¿Qué encontrarás?</h3>
+            <div class="typewriter-container" id="typewriter-container">
+                <!-- El texto se generará dinámicamente con JavaScript -->
+            </div>
         </div>
     </div>
 
     <script>
-        function redirectToLink() {
-            window.location.href = "https://cuentasvendeygana.company.site/products/recargas-juegos";
-        }
-        
-        // Mejorar la experiencia táctil en móviles
         document.addEventListener('DOMContentLoaded', function() {
-            const button = document.querySelector('.redirect-button');
+            const text = "En nuestro sitio encontrarás recargas para todos los juegos populares: Free Fire, Call of Duty, Fortnite, PUBG Mobile, Clash of Clans, Roblox, y muchos más. ¡Aprovecha nuestras ofertas especiales y recarga tus juegos favoritos al mejor precio del mercado!";
+            const container = document.getElementById('typewriter-container');
+            const speed = 50; // Velocidad de escritura en milisegundos
             
-            // Prevenir el comportamiento por defecto en toques largos
-            button.addEventListener('contextmenu', function(e) {
-                e.preventDefault();
-                return false;
-            });
+            function typeWriter() {
+                container.innerHTML = ''; // Limpiar contenedor
+                let i = 0;
+                
+                function type() {
+                    if (i < text.length) {
+                        // Crear un span para el texto ya escrito
+                        const typedSpan = document.createElement('span');
+                        typedSpan.className = 'typewriter-text';
+                        typedSpan.textContent = text.substring(0, i + 1);
+                        
+                        // Crear cursor
+                        const cursorSpan = document.createElement('span');
+                        cursorSpan.className = 'typewriter-cursor';
+                        
+                        // Actualizar contenido
+                        container.innerHTML = '';
+                        container.appendChild(typedSpan);
+                        container.appendChild(cursorSpan);
+                        
+                        i++;
+                        setTimeout(type, speed);
+                    } else {
+                        // Cuando termine, mostrar solo el texto sin cursor
+                        const finalText = document.createElement('span');
+                        finalText.className = 'typewriter-text';
+                        finalText.textContent = text;
+                        container.innerHTML = '';
+                        container.appendChild(finalText);
+                    }
+                }
+                
+                type();
+            }
             
-            // Asegurar que el botón sea fácil de tocar en móviles
-            button.style.webkitTapHighlightColor = 'transparent';
+            // Iniciar efecto máquina de escribir
+            typeWriter();
         });
     </script>
 </body>
