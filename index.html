@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cuentas de Entretenimiento</title>
+    <title>Recargas de Juegos</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
         
         body {
@@ -17,8 +18,24 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background: #ed7318;
             overflow: hidden;
+            background: url('https://i.pinimg.com/1200x/04/ba/81/04ba81fe88ea7535fb77ba435b87ced2.jpg') no-repeat center center;
+            background-size: cover;
+            position: relative;
+            padding: 15px;
+            touch-action: manipulation;
+        }
+
+        /* Capa oscura para mejorar contraste */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
         }
         
         .button-container {
@@ -26,6 +43,11 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            width: 100%;
+            max-width: min(400px, 90vw);
+            height: auto;
+            aspect-ratio: 4/3;
+            z-index: 2;
         }
         
         .redirect-button {
@@ -34,28 +56,36 @@
             cursor: pointer;
             transition: all 0.3s ease;
             border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            overflow: visible;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.8);
             padding: 0;
             position: relative;
-            z-index: 10;
+            z-index: 20;
+            width: 100%;
+            height: 100%;
+            display: block;
+            -webkit-appearance: none;
+            appearance: none;
         }
         
-        .redirect-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+        .redirect-button:active {
+            transform: scale(0.98);
+        }
+        
+        @media (hover: hover) {
+            .redirect-button:hover {
+                transform: scale(1.05);
+                box-shadow: 0 12px 35px rgba(0, 0, 0, 1);
+            }
         }
         
         .button-image {
-            width: 350px;
-            height: auto;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             display: block;
             border-radius: 12px;
-            transition: transform 0.3s ease;
-        }
-        
-        .redirect-button:hover .button-image {
-            transform: scale(1.02);
+            pointer-events: none;
         }
         
         .logos-container {
@@ -64,136 +94,307 @@
             left: 0;
             width: 100%;
             height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.4s ease;
             pointer-events: none;
+            z-index: 10;
         }
         
+        .button-container.active .logos-container,
         .button-container:hover .logos-container {
             opacity: 1;
         }
         
         .logo {
             position: absolute;
-            width: 50px;
-            height: 50px;
-            background: white;
-            border-radius: 50%;
+            border-radius: 10px;
             display: flex;
             justify-content: center;
             align-items: center;
             font-weight: bold;
-            font-size: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+            transition: all 1s cubic-bezier(0.2, 0.8, 0.3, 1);
             text-align: center;
-            padding: 5px;
             color: white;
             opacity: 0;
+            transform: translateY(0) scale(0.8);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(8px);
+            pointer-events: none;
         }
         
-        /* Netflix */
-        .logo-1 {
-            bottom: 10px;
-            left: 25%;
-            background: #E50914;
-            transform: translateY(0) scale(0);
+        /* Tamaños responsivos para logos */
+        .logo {
+            width: min(70px, 18vw);
+            height: min(70px, 18vw);
+            min-width: 50px;
+            min-height: 50px;
         }
         
-        /* Amazon Prime */
-        .logo-2 {
-            bottom: 10px;
-            left: 40%;
-            background: #00A8E1;
-            transform: translateY(0) scale(0);
-        }
-        
-        /* Disney Plus */
-        .logo-3 {
-            bottom: 10px;
-            left: 55%;
-            background: #113CCF;
-            transform: translateY(0) scale(0);
-        }
-        
-        /* Max */
-        .logo-4 {
-            bottom: 10px;
-            left: 70%;
-            background: #00A2FF;
-            transform: translateY(0) scale(0);
-        }
-        
-        /* Paramount */
-        .logo-5 {
-            bottom: 10px;
+        /* Posiciones iniciales - DETRÁS del botón */
+        .logo-1 { 
+            bottom: -35px;
             left: 15%;
-            background: #0066FF;
-            transform: translateY(0) scale(0);
+            background: linear-gradient(135deg, rgba(255, 87, 34, 0.9), rgba(255, 152, 0, 0.9));
         }
         
-        /* Crunchyroll */
-        .logo-6 {
-            bottom: 10px;
-            left: 85%;
-            background: #F47521;
-            transform: translateY(0) scale(0);
+        .logo-2 { 
+            bottom: -35px;
+            left: 50%;
+            transform: translateX(-50%) scale(0.8);
+            background: linear-gradient(135deg, rgba(33, 150, 243, 0.9), rgba(3, 169, 244, 0.9));
         }
         
+        .logo-3 { 
+            bottom: -35px;
+            right: 15%;
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.9), rgba(139, 195, 74, 0.9));
+        }
+        
+        .logo-4 { 
+            bottom: -35px;
+            left: 35%;
+            transform: scale(0.8);
+            background: linear-gradient(135deg, rgba(156, 39, 176, 0.9), rgba(233, 30, 99, 0.9));
+        }
+        
+        /* Estados finales - SUBEN como globos */
+        .button-container.active .logo-1,
         .button-container:hover .logo-1 {
             opacity: 1;
-            transform: translateY(-120px) scale(1);
+            transform: translateY(-120px) translateX(-15px) scale(1);
             transition-delay: 0.1s;
         }
         
+        .button-container.active .logo-2,
         .button-container:hover .logo-2 {
             opacity: 1;
-            transform: translateY(-150px) scale(1);
+            transform: translateX(-50%) translateY(-140px) scale(1);
             transition-delay: 0.2s;
         }
         
+        .button-container.active .logo-3,
         .button-container:hover .logo-3 {
             opacity: 1;
-            transform: translateY(-180px) scale(1);
+            transform: translateY(-130px) translateX(15px) scale(1);
             transition-delay: 0.3s;
         }
         
+        .button-container.active .logo-4,
         .button-container:hover .logo-4 {
             opacity: 1;
-            transform: translateY(-140px) scale(1);
+            transform: translateY(-110px) translateX(-10px) scale(1);
             transition-delay: 0.4s;
         }
-        
-        .button-container:hover .logo-5 {
-            opacity: 1;
-            transform: translateY(-160px) scale(1);
-            transition-delay: 0.5s;
+
+        /* Animaciones de flotación */
+        .button-container.active .logo-1,
+        .button-container:hover .logo-1 {
+            animation: floatLogo1 3s ease-in-out infinite;
         }
         
-        .button-container:hover .logo-6 {
-            opacity: 1;
-            transform: translateY(-130px) scale(1);
-            transition-delay: 0.6s;
+        .button-container.active .logo-2,
+        .button-container:hover .logo-2 {
+            animation: floatLogo2 3.5s ease-in-out infinite;
+        }
+        
+        .button-container.active .logo-3,
+        .button-container:hover .logo-3 {
+            animation: floatLogo3 3.2s ease-in-out infinite;
+        }
+        
+        .button-container.active .logo-4,
+        .button-container:hover .logo-4 {
+            animation: floatLogo4 3.7s ease-in-out infinite;
         }
 
-        /* Efecto de cuerda de globo */
+        @keyframes floatLogo1 {
+            0%, 100% { 
+                transform: translateY(-120px) translateX(-15px) scale(1); 
+            }
+            50% { 
+                transform: translateY(-135px) translateX(-18px) scale(1.03); 
+            }
+        }
+        
+        @keyframes floatLogo2 {
+            0%, 100% { 
+                transform: translateX(-50%) translateY(-140px) scale(1); 
+            }
+            50% { 
+                transform: translateX(-48%) translateY(-155px) scale(1.03); 
+            }
+        }
+        
+        @keyframes floatLogo3 {
+            0%, 100% { 
+                transform: translateY(-130px) translateX(15px) scale(1); 
+            }
+            50% { 
+                transform: translateY(-145px) translateX(18px) scale(1.03); 
+            }
+        }
+        
+        @keyframes floatLogo4 {
+            0%, 100% { 
+                transform: translateY(-110px) translateX(-10px) scale(1); 
+            }
+            50% { 
+                transform: translateY(-125px) translateX(-13px) scale(1.03); 
+            }
+        }
+
+        /* Contenido de los logos */
+        .logo-content {
+            text-align: center;
+            line-height: 1.2;
+            padding: 3px;
+            width: 100%;
+        }
+        
+        .logo-icon {
+            font-size: min(20px, 5vw);
+            margin-bottom: 2px;
+            display: block;
+            filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.5));
+        }
+        
+        .logo-text {
+            font-size: min(10px, 2.5vw);
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            line-height: 1.1;
+        }
+
+        /* Efecto de cuerda para los globos */
         .logo::after {
             content: '';
             position: absolute;
-            bottom: -20px;
+            bottom: -18px;
             left: 50%;
-            width: 1px;
-            height: 20px;
-            background: rgba(255, 255, 255, 0.5);
+            width: 1.5px;
+            height: 18px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0.3));
             transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.4s ease 0.3s;
+        }
+        
+        .button-container.active .logo::after,
+        .button-container:hover .logo::after {
+            opacity: 1;
+        }
+
+        /* Media Queries específicas para móvil */
+        @media (max-width: 768px) {
+            .button-container {
+                max-width: min(350px, 85vw);
+            }
+            
+            .logo {
+                width: min(60px, 16vw);
+                height: min(60px, 16vw);
+                min-width: 45px;
+                min-height: 45px;
+            }
+            
+            /* Ajustes de posición para móvil */
+            .button-container.active .logo-1,
+            .button-container:hover .logo-1 {
+                transform: translateY(-100px) translateX(-12px) scale(1);
+            }
+            
+            .button-container.active .logo-2,
+            .button-container:hover .logo-2 {
+                transform: translateX(-50%) translateY(-120px) scale(1);
+            }
+            
+            .button-container.active .logo-3,
+            .button-container:hover .logo-3 {
+                transform: translateY(-110px) translateX(12px) scale(1);
+            }
+            
+            .button-container.active .logo-4,
+            .button-container:hover .logo-4 {
+                transform: translateY(-90px) translateX(-8px) scale(1);
+            }
+            
+            @keyframes floatLogo1 {
+                0%, 100% { transform: translateY(-100px) translateX(-12px) scale(1); }
+                50% { transform: translateY(-115px) translateX(-15px) scale(1.03); }
+            }
+            
+            @keyframes floatLogo2 {
+                0%, 100% { transform: translateX(-50%) translateY(-120px) scale(1); }
+                50% { transform: translateX(-48%) translateY(-135px) scale(1.03); }
+            }
+            
+            @keyframes floatLogo3 {
+                0%, 100% { transform: translateY(-110px) translateX(12px) scale(1); }
+                50% { transform: translateY(-125px) translateX(15px) scale(1.03); }
+            }
+            
+            @keyframes floatLogo4 {
+                0%, 100% { transform: translateY(-90px) translateX(-8px) scale(1); }
+                50% { transform: translateY(-105px) translateX(-11px) scale(1.03); }
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
+            .button-container {
+                max-width: min(300px, 90vw);
+            }
+            
+            .logo {
+                width: min(55px, 14vw);
+                height: min(55px, 14vw);
+                min-width: 40px;
+                min-height: 40px;
+            }
+            
+            .logo-icon {
+                font-size: min(18px, 4.5vw);
+            }
+            
+            .logo-text {
+                font-size: min(9px, 2.2vw);
+            }
+        }
+
+        /* Para dispositivos con hover (PC) */
+        @media (hover: hover) and (pointer: fine) {
+            .button-container {
+                max-width: 400px;
+            }
+            
+            .button-container.active .logo-1,
+            .button-container:hover .logo-1 {
+                transform: translateY(-150px) translateX(-20px) scale(1);
+            }
+            
+            .button-container.active .logo-2,
+            .button-container:hover .logo-2 {
+                transform: translateX(-50%) translateY(-180px) scale(1);
+            }
+            
+            .button-container.active .logo-3,
+            .button-container:hover .logo-3 {
+                transform: translateY(-160px) translateX(20px) scale(1);
+            }
+            
+            .button-container.active .logo-4,
+            .button-container:hover .logo-4 {
+                transform: translateY(-140px) translateX(-15px) scale(1);
+            }
         }
     </style>
 </head>
 <body>
-    <div class="button-container">
+    <div class="button-container" id="buttonContainer">
         <button class="redirect-button" onclick="redirectToLink()">
             <img src="https://i.pinimg.com/1200x/ff/b3/2e/ffb32e80ad335f11a5e897e520b67cad.jpg" 
                  alt="Recargas de Juegos" 
@@ -201,19 +402,111 @@
         </button>
         
         <div class="logos-container">
-            <div class="logo logo-1">Netflix</div>
-            <div class="logo logo-2">Amazon Prime</div>
-            <div class="logo logo-3">Disney Plus</div>
-            <div class="logo logo-4">Max</div>
-            <div class="logo logo-5">Paramount</div>
-            <div class="logo logo-6">Crunchyroll</div>
+            <div class="logo logo-1">
+                <div class="logo-content">
+                    <span class="logo-icon">🎮</span>
+                    <span class="logo-text">FORTNITE</span>
+                </div>
+            </div>
+            <div class="logo logo-2">
+                <div class="logo-content">
+                    <span class="logo-icon">⚔️</span>
+                    <span class="logo-text">FREE FIRE</span>
+                </div>
+            </div>
+            <div class="logo logo-3">
+                <div class="logo-content">
+                    <span class="logo-icon">🏆</span>
+                    <span class="logo-text">CALL OF DUTY</span>
+                </div>
+            </div>
+            <div class="logo logo-4">
+                <div class="logo-content">
+                    <span class="logo-icon">👑</span>
+                    <span class="logo-text">ROBLOX</span>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
         function redirectToLink() {
-            window.location.href = "https://cuentasvendeygana.company.site/products/recargas-juegos";
+            // Abrir en nueva pestaña/página
+            window.open('https://cuentasvendeygana.company.site/products/recargas-juegos', '_blank');
         }
+
+        // Gestión de estados para móvil y PC
+        const buttonContainer = document.getElementById('buttonContainer');
+        const button = document.querySelector('.redirect-button');
+        let isActive = false;
+        let touchTimer;
+
+        // Para dispositivos táctiles
+        button.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Mostrar logos inmediatamente
+            isActive = true;
+            buttonContainer.classList.add('active');
+            
+            // Timer para redirección (evita redirección inmediata)
+            touchTimer = setTimeout(() => {
+                // No redirigir aquí, solo mostrar logos
+            }, 100);
+        });
+
+        button.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            clearTimeout(touchTimer);
+            
+            // Redirigir solo si fue un tap corto
+            if (isActive) {
+                redirectToLink();
+            }
+            
+            // Ocultar logos después de un delay
+            setTimeout(() => {
+                isActive = false;
+                buttonContainer.classList.remove('active');
+            }, 2000);
+        });
+
+        // Para mouse (PC)
+        button.addEventListener('mouseenter', function() {
+            buttonContainer.classList.add('active');
+        });
+        
+        button.addEventListener('mouseleave', function() {
+            buttonContainer.classList.remove('active');
+        });
+
+        // Prevenir comportamientos no deseados
+        button.addEventListener('touchmove', function(e) {
+            e.preventDefault();
+        });
+
+        document.addEventListener('touchstart', function(e) {
+            if (!buttonContainer.contains(e.target)) {
+                buttonContainer.classList.remove('active');
+                isActive = false;
+            }
+        });
+
+        // Prevenir zoom en doble toque
+        document.addEventListener('gesturestart', function(e) {
+            e.preventDefault();
+        });
+
+        document.addEventListener('gesturechange', function(e) {
+            e.preventDefault();
+        });
+
+        document.addEventListener('gestureend', function(e) {
+            e.preventDefault();
+        });
+
+        console.log('Botón cargado correctamente para móvil y PC');
     </script>
 </body>
 </html>
