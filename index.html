@@ -111,6 +111,76 @@
             margin-left: 2px;
         }
         
+        /* Estilos para la ventana modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+        
+        .modal-content {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+        
+        .modal-content h2 {
+            color: #ed7318;
+            margin-bottom: 20px;
+        }
+        
+        .modal-content p {
+            margin-bottom: 20px;
+            color: #555;
+            line-height: 1.6;
+        }
+        
+        .modal-content .horario {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid #ed7318;
+        }
+        
+        .modal-content .horario h3 {
+            color: #ed7318;
+            margin-bottom: 10px;
+        }
+        
+        .modal-content .horario p {
+            margin-bottom: 5px;
+        }
+        
+        .modal-close {
+            background-color: #ed7318;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        
+        .modal-close:hover {
+            background-color: #d66515;
+        }
+        
         @keyframes blink {
             0%, 50% {
                 opacity: 1;
@@ -136,6 +206,10 @@
             .button-image {
                 max-width: 300px;
             }
+            
+            .modal-content {
+                padding: 20px;
+            }
         }
         
         @media (max-width: 480px) {
@@ -149,6 +223,10 @@
             
             .button-image {
                 max-width: 250px;
+            }
+            
+            .modal-content {
+                padding: 15px;
             }
         }
     </style>
@@ -174,10 +252,28 @@
         </div>
     </div>
 
+    <!-- Ventana modal para horario fuera de servicio -->
+    <div id="modalHorario" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <h2>Aviso Importante</h2>
+            <p>Estimado usuario, en este momento estamos fuera del horario y nuestro equipo descansa. Si gusta, haga el pedido y al estar activos nuevamente lo procesaremos e informaremos.</p>
+            
+            <div class="horario">
+                <h3>Nuestro Horario de Atención</h3>
+                <p><strong>Lunes a Sábado:</strong> 8:30 AM a 9:00 PM</p>
+                <p><strong>Domingos:</strong> 10:00 AM a 7:00 PM</p>
+            </div>
+            
+            <button class="modal-close" id="modalClose">Entendido</button>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const text = "En nuestro sitio encontrarás recargas para todos los juegos populares: Free Fire, Call of Duty, Fortnite, PUBG Mobile, Clash of Clans, Roblox, y muchos más. ¡Aprovecha nuestras ofertas especiales y recarga tus juegos favoritos al mejor precio del mercado!";
             const container = document.getElementById('typewriter-container');
+            const modalHorario = document.getElementById('modalHorario');
+            const modalClose = document.getElementById('modalClose');
             const speed = 50; // Velocidad de escritura en milisegundos
             
             function typeWriter() {
@@ -214,6 +310,47 @@
                 
                 type();
             }
+            
+            // Función para verificar si estamos fuera del horario de atención
+            function estaFueraDeHorario() {
+                const ahora = new Date();
+                const dia = ahora.getDay(); // 0 = Domingo, 1 = Lunes, ..., 6 = Sábado
+                const hora = ahora.getHours();
+                const minutos = ahora.getMinutes();
+                const horaActual = hora + (minutos / 100);
+                
+                // Lunes a Sábado: después de las 9:00 PM y hasta las 8:30 AM
+                if (dia >= 1 && dia <= 6) {
+                    if (horaActual >= 21.00 || horaActual < 8.30) {
+                        return true;
+                    }
+                }
+                // Domingo: después de las 7:00 PM y hasta las 10:00 AM
+                else if (dia === 0) {
+                    if (horaActual >= 19.00 || horaActual < 10.00) {
+                        return true;
+                    }
+                }
+                
+                return false;
+            }
+            
+            // Mostrar modal si está fuera del horario
+            if (estaFueraDeHorario()) {
+                modalHorario.style.display = 'flex';
+            }
+            
+            // Cerrar modal al hacer clic en el botón
+            modalClose.addEventListener('click', function() {
+                modalHorario.style.display = 'none';
+            });
+            
+            // Cerrar modal al hacer clic fuera del contenido
+            modalHorario.addEventListener('click', function(e) {
+                if (e.target === modalHorario) {
+                    modalHorario.style.display = 'none';
+                }
+            });
             
             // Iniciar efecto máquina de escribir
             typeWriter();
